@@ -1,0 +1,42 @@
+AI-BASED EXPLAINABLE & ADVERSARIAL-RESISTANT NIDS
+=================================================
+
+Dataset:
+NSL-KDD (KDDTrain+.txt, KDDTest+.txt)
+
+Models Evaluated:
+- Random Forest
+- XGBoost
+- Keras Deep Neural Network (DNN)
+
+Best Model:
+DNN
+
+Clean Performance (Best Model - DNN):
+- Accuracy:          79.17%
+- Macro Precision:   66.49%
+- Macro Recall:      66.71%
+- Macro F1-Score:    58.19%
+- Weighted F1-Score: 76.67%
+- False Positive Rate (Normal): 4.66%
+
+SHAP Explainability:
+Implemented (Global Summary Plot, Global Bar Plot, Local Feature Impact Analysis)
+
+Adversarial Vulnerability (Baseline DNN):
+- Clean Accuracy:    78.92%
+- FGSM Accuracy:     66.04%
+- PGD Accuracy:      65.16%
+
+Adversarial Training & Defense:
+- Retrained Clean Accuracy:   77.48%
+- Retrained FGSM Accuracy:    42.28%
+- Retrained PGD Accuracy:     32.40%
+- FGSM Robustness Improvement: +-23.76%
+- PGD Robustness Improvement:  +-32.76%
+
+Summary Table Across Models:
+        Model  Accuracy  Macro Precision  Macro Recall  Macro F1-Score  Weighted F1-Score  Normal FPR  Macro FPR
+Random Forest  0.757674         0.803086      0.526260        0.550227           0.719700    0.027495   0.082833
+      XGBoost  0.785176         0.816465      0.622511        0.650611           0.759185    0.028833   0.072101
+          DNN  0.791741         0.664862      0.667069        0.581881           0.766664    0.046648   0.066594
