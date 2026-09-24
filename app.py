@@ -372,7 +372,7 @@ elif page == "🔍 Live Flow Inference & XAI (SHAP)":
         
         from src.shap_explainability import explain_single_prediction
         explanation_text, feat_contribs = explain_single_prediction(
-            model, sample_vector, feature_names, label_encoder, sample_idx=sample_idx, results_dir="results/shap"
+            model, sample_vector, feature_names, label_encoder, X_background=X_test_scaled[:50], sample_idx=sample_idx, results_dir="results/shap"
         )
         
         top_15 = feat_contribs[:15]
@@ -384,13 +384,13 @@ elif page == "🔍 Live Flow Inference & XAI (SHAP)":
             x='SHAP Value', y='Feature', orientation='h', color='Contribution',
             text=df_local_shap['SHAP Value'].apply(lambda x: f"{x:+.4f}"),
             color_discrete_map={'Positive Contribution': '#F87171', 'Negative Contribution': '#60A5FA'},
-            title=f"Top Feature Contributions for Prediction: {pred_class_name.upper()}"
+            title=f"Top Feature Contributions for Prediction: {pred_class_name.upper()} (Sample #{sample_idx})"
         )
         fig_local.update_traces(textposition='outside')
         fig_local.update_layout(height=500, template="plotly_dark")
         st.plotly_chart(fig_local, use_container_width=True)
         
-        st.subheader("💬 XAI Qualitative Summary")
+        st.subheader("💬 Qualitative XAI Text Summary")
         st.info(explanation_text)
 
 # PAGE 5: ADVERSARIAL ATTACKS & DEFENSE
